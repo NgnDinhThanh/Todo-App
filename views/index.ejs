@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %> | Todo app</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="table-container">
+      <h2 class="todo-title">Todo list</h2>
+      <div>
+        <a href="/add-todo" class="btn">Add todo</a>
+      </div>
+      <br />
+
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Create at</th>
+          <th>Update at</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <% for (let i = 0; i < todos.length; i++) { %>
+          <td><%= todos[i].title %></td>
+          <td><%= todos[i].desc %></td>
+          <td>
+            <%= moment(todos[i].createdAt).format("MM DD, YYYY, HH:mm:ss") %>
+          </td>
+          <td>
+            <%= moment(todos[i].updatedAt).format("MM DD, YYYY, HH:mm:ss") %>
+          </td>
+          <td>
+            <a href="/update-todo?id=<%= todos[i]._id %>" class="btn">Edit</a>
+            <a href="/delete-todo?id=<%= todos[i]._id %>" class="btn">Delete</a>
+          </td>
+        </tr>
+        <% } %>
+      </table>
+    </div>
+  </body>
+</html>
